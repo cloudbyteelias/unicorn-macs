@@ -1,3 +1,15 @@
-(add-to-list 'load-path "~/.emacs.d/unicorn/system.el")
+
+(defun load-directory (dir)
+      (let ((load-it (lambda (f)
+		       (load-file (concat (file-name-as-directory dir) f)))
+		     ))
+	(mapc load-it (directory-files dir nil "\\.el$"))))
+    (load-directory "~/.emacs.d/unicorn/")
 
 
+(custom-set-variables
+ '(package-selected-packages '(no-littering use-package)))
+(custom-set-faces
+
+
+ )
