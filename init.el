@@ -2,6 +2,8 @@
 ;(setq warning-minimum-level :emergency)
 
 
+(setq gc-cons-threshold 100000000)
+
 (eval-after-load "enriched"
   '(defun enriched-decode-display-prop (start end &optional param)
      (list start end)))

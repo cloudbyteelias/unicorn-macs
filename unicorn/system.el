@@ -4,14 +4,6 @@
 ;;                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-;(require 'package)
-
-;(defvar unicorn
-;  (concat user-emacs-directory
-;   (convert-standard-filename "unicorn/")))
-
-;(defvar  package-enable-at-startup nil)
 (setq package-enable-at-startup nil)
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -61,6 +53,12 @@
 (require 'auto-compile)
 (auto-compile-on-load-mode)
 (auto-compile-on-save-mode)
+
+(defvar mode-line-bell-cached-string nil)
+(defvar mode-line-bell-propertized-string nil)
+
+(global-set-key (kbd "<mouse-2>") nil)
+
 
 
 
