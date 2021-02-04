@@ -5,22 +5,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+;(require 'package)
 
-(defvar unicorn
-  (concat user-emacs-directory
-   (convert-standard-filename "unicorn/")))
+;(defvar unicorn
+;  (concat user-emacs-directory
+;   (convert-standard-filename "unicorn/")))
 
-(defvar  package-enable-at-startup nil)
+;(defvar  package-enable-at-startup nil)
+(setq package-enable-at-startup nil)
 
-(package-initialize)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-(require 'package)
-
-;(when (>= emacs-major-version 24)
-; (require 'package)
-; (add-to-list
-;  'package-archives '("melpa" . "https://melpa.org/packages/")t))
-
 
 (when (>= emacs-major-version 24)
 (setq package-archives'(
@@ -31,12 +25,46 @@
           ("melpa"     . "https://melpa.org/packages/")
           ("melpa-stable"     . "https://stable.melpa.org/packages/"))))
 
-
-(unless package-archive-contents
- (package-refresh-contents))
+(package-initialize)
 
 
-;(unless (package-installed-p 'use-package )
-;   (package-install 'use-package))
+(unless (package-installed-p 'use-package )
+    (package-refresh-contents))
+    (package-install 'use-package)
 
-;(require 'use-package) 
+
+(eval-when-compile
+  (add-to-list 'load-path "~/.emacs.d")
+  (require 'use-package))
+
+(use-package no-littering :ensure t)
+
+
+
+(setq no-littering-etc-directory(expand-file-name "config/" user-emacs-directory))
+(setq no-littering-var-directory(expand-file-name "data/" user-emacs-directory))
+(require 'no-littering)
+
+(require 'recentf)
+(add-to-list 'recentf-exclude no-littering-var-directory)
+(add-to-list 'recentf-exclude no-littering-etc-directory)
+
+(use-package async
+  :ensure t)
+
+(async-bytecomp-package-mode 1)
+
+(use-package auto-compile :ensure t)
+
+(setq load-prefer-newer t)
+(package-initialize)
+(require 'auto-compile)
+(auto-compile-on-load-mode)
+(auto-compile-on-save-mode)
+
+
+
+;(use-package assync : ensure t)
+;(async-bytecomp-package-mode 1)
+
+
