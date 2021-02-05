@@ -1,21 +1,24 @@
 
-
 (setq warning-minimum-level :emergency)
 (setq package-enable-at-startup nil)
 
 (setq gc-cons-threshold 100000000)
+
+;(setq gc-cons-threshold (* 50 1000 1000))
+
 
 (eval-after-load "enriched"
   '(defun enriched-decode-display-prop (start end &optional param)
      (list start end)))
 
 (defun load-directory (dir)
-      (let ((load-it (lambda (f)
+     (let ((load-it (lambda (f)
 		       (load-file (concat (file-name-as-directory dir) f)))
 		     ))
 	(mapc load-it (directory-files dir nil "\\.el$"))))
     (load-directory "~/.emacs.d/unicorn/")
 
+;(setq gc-cons-threshold (* 10 1000 1000))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

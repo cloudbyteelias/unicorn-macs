@@ -5,8 +5,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;; disable gui component -1 or 1 to enable
+(setq menu-bar 1)      
+(setq scroll-bar -1)
+(setq tooltip -1)
+(setq tool-bar -1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (when (>= emacs-major-version 24)
 (setq package-archives'(
 
@@ -18,19 +24,21 @@
 
 (package-initialize)
 
-
 (unless (package-installed-p 'use-package )
     (package-refresh-contents))
     (package-install 'use-package)
-
 
 (eval-when-compile
   (add-to-list 'load-path "~/.emacs.d")
   (require 'use-package))
 
+
+(use-package auth-source
+  :no-require t
+  :config (setq auth-sources '("~/.authinfo.gpg" "~/.netrc")))
+
+
 (use-package no-littering :ensure t)
-
-
 
 (setq no-littering-etc-directory(expand-file-name "config/" user-emacs-directory))
 (setq no-littering-var-directory(expand-file-name "data/" user-emacs-directory))
@@ -69,12 +77,13 @@
 ;;                                                                ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(if window-system
-    (tool-bar-mode -1)
-    (toggle-scroll-bar -1)
-    (menu-bar-mode -1) 
-)
+(when window-system
+  (menu-bar-mode menu-bar)             
+  (scroll-bar-mode -1)            
+  (tool-bar-mode -1)              
+  (tooltip-mode -1))
 
+  
 (use-package ample-theme
   :init (progn (load-theme 'ample t t)
                (enable-theme 'ample))
@@ -108,6 +117,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq initial-major-mode 'text-mode)
+
+(set-face-attribute 'default nil :font "Source Code Pro Medium")
+(set-fontset-font t 'latin "Noto Sans")
 
 (use-package dashboard
   :ensure t
