@@ -82,6 +82,10 @@
   :defer t
   :ensure t)
 
+(global-set-key (kbd "<mouse-2>") nil)
+
+(global-linum-mode t)
+(setq linum-format " %3d ")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DASHBOARD CONFIG           ;;
@@ -106,6 +110,20 @@
 (setq dashboard-init-info "javascript is the cancer of the world !")
 ;(setq dashboard-set-footer nil)
 (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+
+
+(use-package exec-path-from-shell :ensure t)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+
+(use-package telephone-line
+    :ensure t 
+    :init
+    (require 'telephone-line)
+    :config 
+    (telephone-line-mode 1))
 
 
 (use-package rainbow-delimiters
@@ -172,6 +190,35 @@
     (require 'mips-mode))
 
 
+(use-package web-mode :ensure t)
+(use-package company-web :ensure t)
+
+(setq web-mode-enable-auto-pairing t)
+
+(add-hook 'web-mode-hook (lambda ()
+                          (set (make-local-variable 'company-backends) '(company-web-html))
+                          (company-mode t)))
+
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+
+(use-package js2-mode :ensure t)
+(use-package js2-refactor :ensure t)
+(use-package xref-js2 :ensure t)
+(use-package json-mode :ensure t)
+
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+
+(add-hook 'js2-mode-hook (lambda ()
+(add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; MAKE MODE  https://www.emacswiki.org/emacs/MakefileMode ; 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -194,4 +241,11 @@
           `(makefile-nmake-font-lock-keywords ,@(cdr font-lock-defaults))))
 
    (setq auto-mode-alist
-        (cons '("\\.mak\\'" . makefile-nmake-mode) auto-mode-alist))       
+        (cons '("\\.mak\\'" . makefile-nmake-mode) auto-mode-alist)) 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  KEY CONFIG                            ;;
+;;                                        ;;
+;;                                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
