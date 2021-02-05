@@ -1,6 +1,5 @@
 
-;(setq warning-minimum-level :emergency)
-
+(setq warning-minimum-level :emergency)
 
 (setq gc-cons-threshold 100000000)
 
