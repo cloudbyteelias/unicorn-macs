@@ -116,6 +116,10 @@
 ;;                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package alert
+  :defer 1
+  :custom (alert-default-style 'libnotify))
+
 (setq initial-major-mode 'text-mode)
 
 (set-face-attribute 'default nil :font "Source Code Pro Medium")
@@ -188,6 +192,19 @@
 ;;                                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+(use-package company
+  :defer 0.5
+  :delight
+  :custom
+  (company-begin-commands '(self-insert-command))
+  (company-idle-delay 0)
+  (company-minimum-prefix-length 2)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations 't)
+  (global-company-mode t))
+
+
 (use-package elpy
   :ensure t
   :init
@@ -207,9 +224,9 @@
   (add-to-list 'auto-mode-alist '("\\.elixir2\\'" . elixir-mode)))
 
 (use-package lua-mode
-   :ensure t
-   :init 
-   (require 'lua-mode))
+  :delight "Λ "
+  :mode "\\.lua\\'"
+  :interpreter ("lua" . lua-mode))
 
 (use-package mips-mode
     :ensure t 
@@ -217,6 +234,20 @@
     "\\.mips$"
     :init
     (require 'mips-mode))
+
+(use-package sh-script
+  :ensure nil
+  :hook (after-save . executable-make-buffer-file-executable-if-script-p))
+
+ (use-package yaml-mode
+  :delight "ψ "
+  :mode "\\.yml\\'"
+  :interpreter ("yml" . yml-mode)) 
+
+
+(use-package elisp-mode :ensure nil :delight "ξ ")
+
+
 
 
 (use-package web-mode :ensure t)
@@ -246,6 +277,17 @@
 
 (add-hook 'js2-mode-hook (lambda ()
 (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
+
+
+
+;(use-package css-mode
+;  :custom (css-indent-offset 2))
+
+;(use-package less-css-mode
+;  :mode "\\.less\\'")
+
+;(use-package scss-mode
+;  :mode "\\.scss\\'")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
