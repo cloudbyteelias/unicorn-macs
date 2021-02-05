@@ -61,6 +61,51 @@
 
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                ;;
+;;                                                                ;;
+;;            Themes and apparence                                ;;
+;;                                                                ;;
+;;                                                                ;;
+;;                                                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(if window-system
+    (tool-bar-mode -1)
+    (toggle-scroll-bar -1)
+    (menu-bar-mode -1) 
+)
+
+(use-package ample-theme
+  :init (progn (load-theme 'ample t t)
+               (enable-theme 'ample))
+  :defer t
+  :ensure t)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+
+(setq dashboard-banner-logo-title "Welcome to unicorn")
+
+(setq dashboard-startup-banner "~/.emacs.d/unicorn/logo.png")
+;; Value can be
+;; 'official which displays the official emacs logo
+;; 'logo which displays an alternative emacs logo
+;; 1, 2 or 3 which displays one of the text banners
+;; "path/to/your/image.png" or "path/to/your/text.txt" which displays whatever image/text you would prefer
+
+;; Content is not centered by default. To center, set
+(setq dashboard-center-content t)
+
+;; To disable shortcut "jump" indicators for each section, set
+(setq dashboard-show-shortcuts nil)
+
+
+
 
 ;(use-package assync : ensure t)
 ;(async-bytecomp-package-mode 1)
