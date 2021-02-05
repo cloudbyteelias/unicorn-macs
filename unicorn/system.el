@@ -108,12 +108,49 @@
 (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
 
 
+(use-package rainbow-delimiters
+  :ensure t)
 
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+(use-package switch-window
+  :ensure t)
 
+(require 'switch-window)
 
+(use-package popwin
+  :ensure t
+  :config
+  (popwin-mode t))
 
-;(use-package assync : ensure t)
-;(async-bytecomp-package-mode 1)
+  (use-package neotree
+  :ensure t
+  :config
+  (setq neo-window-width 45)
+  ;; auto open on current file
+  (setq neo-smart-open t)
+
+  (setq-default neo-show-hidden-files nil))
+
+(tool-bar-add-item "home" 'neotree-toggle
+               'Files
+               :help   "File Explorer")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Language suport                  ;;
+;;                                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+
+(use-package go-mode
+  :ensure t
+  :init
+  (autoload 'go-mode "go-mode" nil t)
+  (add-hook 'go-mode-hook 'lsp-deferred)
+  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode)))
 
 
