@@ -107,6 +107,8 @@
 ;;                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq initial-major-mode 'text-mode)
+
 (use-package dashboard
   :ensure t
   :config
