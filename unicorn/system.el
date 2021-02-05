@@ -4,7 +4,6 @@
 ;;                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq package-enable-at-startup nil)
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
@@ -82,10 +81,26 @@
   :defer t
   :ensure t)
 
+
+(setq mouse-wheel-progressive-speed nil) 
+(setq mouse-wheel-follow-mouse 't) 
+(setq scroll-step 5) 
+
+(setq mouse-yank-at-point nil)
+(setq mouse-drag-copy-region nil)
+(setq x-select-enable-primary nil)
+(setq x-select-enable-clipboard t)
+(setq select-active-regions t)
 (global-set-key (kbd "<mouse-2>") nil)
 
 (global-linum-mode t)
 (setq linum-format " %3d ")
+
+(global-auto-revert-mode t)
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(cua-mode t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; DASHBOARD CONFIG           ;;
@@ -107,7 +122,7 @@
 (setq dashboard-items nil)
 
 (setq dashboard-set-navigator t)
-(setq dashboard-init-info "javascript is the cancer of the world !")
+;(setq dashboard-init-info "javascript is the cancer of the world !")
 ;(setq dashboard-set-footer nil)
 (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
 
