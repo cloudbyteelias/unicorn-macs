@@ -82,6 +82,12 @@
   :defer t
   :ensure t)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; DASHBOARD CONFIG           ;;
+;;                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (use-package dashboard
   :ensure t
   :config
@@ -89,20 +95,20 @@
 
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
-(setq dashboard-banner-logo-title "Welcome to unicorn")
+(setq dashboard-banner-logo-title "Welcome to unicorn -")
 
 (setq dashboard-startup-banner "~/.emacs.d/unicorn/logo.png")
-;; Value can be
-;; 'official which displays the official emacs logo
-;; 'logo which displays an alternative emacs logo
-;; 1, 2 or 3 which displays one of the text banners
-;; "path/to/your/image.png" or "path/to/your/text.txt" which displays whatever image/text you would prefer
-
-;; Content is not centered by default. To center, set
 (setq dashboard-center-content t)
-
-;; To disable shortcut "jump" indicators for each section, set
 (setq dashboard-show-shortcuts nil)
+(setq dashboard-items nil)
+
+(setq dashboard-set-navigator t)
+(setq dashboard-init-info "javascript is the cancer of the world !")
+;(setq dashboard-set-footer nil)
+(setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+
+
+
 
 
 
