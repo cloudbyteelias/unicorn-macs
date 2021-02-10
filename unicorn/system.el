@@ -90,6 +90,7 @@
   :defer t
   :ensure t)
 
+(require 'ample-theme)
 
 (setq mouse-wheel-progressive-speed nil) 
 (setq mouse-wheel-follow-mouse 't) 
@@ -192,6 +193,14 @@
 ;(tool-bar-add-item "home" 'neotree-toggle
 ;               'Files
 ;               :help   "File Explorer")
+
+
+ (use-package undo-tree
+	:ensure t
+	:config
+	(global-undo-tree-mode t))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Language suport                  ;;
@@ -323,14 +332,22 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  KEY CONFIG                            ;;
-;;                                        ;;
-;;                                        ;;
+;; CTR + x CTR + c  exit emacs            ;;
+;; F1 neotree-show                       
+;; 
+;;
+;;
+;;
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package bind-key :ensure t)
 
 (global-set-key (kbd "<f1>") 'neotree-show)
 (global-set-key (kdb "<f2>") 'neotree-toggle)
 (global-set-key (kbd "<mouse-2>")nil)
 
+(global-set-key (kdb "x") 'save-buffers-kill-emacs)
 
 
 
