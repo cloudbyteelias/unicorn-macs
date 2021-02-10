@@ -122,8 +122,8 @@
 
 (setq initial-major-mode 'text-mode)
 
-(set-face-attribute 'default nil :font "Source Code Pro Medium")
-(set-fontset-font t 'latin "Noto Sans")
+;;(set-face-attribute 'default nil :font "Source Code Pro Medium")
+;;(set-fontset-font t 'latin "Noto Sans")
 
 (use-package dashboard
   :ensure t
