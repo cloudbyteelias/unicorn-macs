@@ -100,7 +100,7 @@
 (setq x-select-enable-primary nil)
 (setq x-select-enable-clipboard t)
 (setq select-active-regions t)
-(global-set-key (kbd "<mouse-2>") nil)
+;;(global-set-key (kbd "<mouse-2>") nil)
 
 (global-linum-mode t)
 (setq linum-format " %3d ")
@@ -115,6 +115,12 @@
 ;; DASHBOARD CONFIG           ;;
 ;;                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(set-language-environment 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+
 
 (use-package alert
   :defer 1
@@ -132,7 +138,7 @@
 
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 
-(setq dashboard-banner-logo-title "Welcome to unicorn -")
+(setq dashboard-banner-logo-title "Welcome to unicorn")
 
 (setq dashboard-startup-banner "~/.emacs.d/unicorn/logo.png")
 (setq dashboard-center-content t)
@@ -177,15 +183,15 @@
   (use-package neotree
   :ensure t
   :config
-  (setq neo-window-width 45)
-  ;; auto open on current file
+  (setq neo-theme 'nerd)
+  (setq neo-window-width 55)
   (setq neo-smart-open t)
 
   (setq-default neo-show-hidden-files nil))
 
-(tool-bar-add-item "home" 'neotree-toggle
-               'Files
-               :help   "File Explorer")
+;(tool-bar-add-item "home" 'neotree-toggle
+;               'Files
+;               :help   "File Explorer")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Language suport                  ;;
@@ -320,3 +326,14 @@
 ;;                                        ;;
 ;;                                        ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "<f1>") 'neotree-show)
+(global-set-key (kdb "<f2>") 'neotree-toggle)
+(global-set-key (kbd "<mouse-2>")nil)
+
+
+
+
+
+
+
