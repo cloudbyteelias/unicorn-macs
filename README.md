@@ -16,7 +16,7 @@
 
 
 
-| Syntax      | Description | 
+| KEY         | CMD         | 
 | :---        |    :----:   |          
 | f1          | Neotree     | 
 | f2          | Term        | 
