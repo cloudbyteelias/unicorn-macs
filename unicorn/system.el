@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                            ;;
-;;                                            ;; 
+;;       Elias de Jesus de Moraes             ;; 
 ;;                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -69,13 +69,9 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                ;;
-;;                                                                ;;
 ;;            Themes and apparence                                ;;
-;;                                                                ;;
-;;                                                                ;;
-;;                                                                ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 (when window-system
   (menu-bar-mode menu-bar)             
@@ -85,12 +81,13 @@
 
   
 (use-package ample-theme
-  :init (progn (load-theme 'ample t t)
-               (enable-theme 'ample))
-  :defer t
-  :ensure t)
+   :init (progn (load-theme 'ample t t)
+                (enable-theme 'ample))
+   :defer t
+   :ensure t)
+ 
+ (require 'ample-theme)
 
-(require 'ample-theme)
 
 (setq mouse-wheel-progressive-speed nil) 
 (setq mouse-wheel-follow-mouse 't) 
@@ -101,7 +98,7 @@
 (setq x-select-enable-primary nil)
 (setq x-select-enable-clipboard t)
 (setq select-active-regions t)
-;;(global-set-key (kbd "<mouse-2>") nil)
+(global-set-key (kbd "<mouse-2>") nil)
 
 (global-linum-mode t)
 (setq linum-format " %3d ")
@@ -147,7 +144,7 @@
 (setq dashboard-items nil)
 
 (setq dashboard-set-navigator t)
-;(setq dashboard-init-info "javascript is the cancer of the world !")
+(setq dashboard-init-info "javascript is the cancer of the world !")
 ;(setq dashboard-set-footer nil)
 (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
 
@@ -190,9 +187,6 @@
 
   (setq-default neo-show-hidden-files nil))
 
-;(tool-bar-add-item "home" 'neotree-toggle
-;               'Files
-;               :help   "File Explorer")
 
 
  (use-package undo-tree
@@ -294,17 +288,6 @@
 (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
 
 
-
-;(use-package css-mode
-;  :custom (css-indent-offset 2))
-
-;(use-package less-css-mode
-;  :mode "\\.less\\'")
-
-;(use-package scss-mode
-;  :mode "\\.scss\\'")
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; MAKE MODE  https://www.emacswiki.org/emacs/MakefileMode ; 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -328,7 +311,6 @@
 
    (setq auto-mode-alist
         (cons '("\\.mak\\'" . makefile-nmake-mode) auto-mode-alist)) 
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -358,6 +340,5 @@
 (use-package bind-key :ensure t)
 
 (global-set-key (kbd "<f1>") 'neotree-show)
-(global-set-key (kbd "<mouse-2>")nil)
 
 
