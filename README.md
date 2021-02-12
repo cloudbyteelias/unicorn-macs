@@ -12,4 +12,20 @@
 
   <h3 align="center">Unicorn emacs</h3>
 
+
+
+
+
+| Syntax      | Description | 
+| :---        |    :----:   |          
+| f1          | Neotree     | 
+| f2          | Term        | 
+
+
+
+
+
+
+
+
 # under development not use !!!
