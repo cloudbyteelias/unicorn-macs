@@ -330,8 +330,22 @@
         (cons '("\\.mak\\'" . makefile-nmake-mode) auto-mode-alist)) 
 
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  KEY CONFIG                            ;;
+;                  Shell                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+   (use-package shell-pop
+	:bind (("<f2>" . shell-pop))
+	:config
+        (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+        (setq shell-pop-shell-position "bottom")
+	(setq shell-pop-term-shell "/bin/bash")		       
+        (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; KEY CONFIG                             ;;
 ;; CTR + x CTR + c  exit emacs            ;;
 ;; F1 neotree-show                       
 ;; 
@@ -344,13 +358,6 @@
 (use-package bind-key :ensure t)
 
 (global-set-key (kbd "<f1>") 'neotree-show)
-(global-set-key (kdb "<f2>") 'neotree-toggle)
 (global-set-key (kbd "<mouse-2>")nil)
-
-(global-set-key (kdb "x") 'save-buffers-kill-emacs)
-
-
-
-
 
 
