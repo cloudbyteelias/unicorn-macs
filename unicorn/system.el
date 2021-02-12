@@ -5,6 +5,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+(setq goenv "GOSOURCES")
+
+
+
 ;; disable gui component -1 or 1 to enable
 (setq menu-bar 1)      
 (setq scroll-bar -1)
@@ -225,6 +229,30 @@
   (autoload 'go-mode "go-mode" nil t)
   (add-hook 'go-mode-hook 'lsp-deferred)
   (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode)))
+
+(use-package go-autocomplete :ensure t) 
+
+(defun auto-complete-for-go ()
+   (auto-complete-mode 1))
+ (add-hook 'go-mode-hook 'auto-complete-for-go)
+
+(with-eval-after-load 'go-mode
+  (require 'go-autocomplete))
+
+
+(defun set-exec-path-from-shell-PATH ()
+    (let ((path-from-shell (replace-regexp-in-string
+         "[ \t\n]*$"
+	 ""
+	(shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+          (setenv "PATH" path-from-shell)
+	      (setq eshell-path-env path-from-shell) ; for eshell users
+	          (setq exec-path (split-string path-from-shell path-separator))))
+
+(when window-system (set-exec-path-from-shell-PATH))
+
+
+(setenv "GOPATH" "~/GOSOURCES/gocode")
 
 (use-package elixir-mode
   :ensure t
